@@ -114,8 +114,11 @@ length []      = 0
 length (x::xs) = 1 + length xs
 
 tails : List a -> List (List a)
-tails []      = []
-tails (x::xs) = (x::xs) :: tails xs
+tails xs = xs :: tails' xs
+  where
+    tails' : List a -> List (List a)
+    tails' []     = []
+    tails' (y::ys) = tails ys
 
 --------------------------------------------------------------------------------
 -- Building (bigger) lists
