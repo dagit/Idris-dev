@@ -114,7 +114,7 @@ length []      = 0
 length (x::xs) = 1 + length xs
 
 tails : List a -> List (List a)
-tails []          = []
+tails []      = []
 tails (x::xs) = (x::xs) :: tails xs
 
 --------------------------------------------------------------------------------
