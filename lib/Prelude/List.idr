@@ -113,6 +113,10 @@ length : List a -> Nat
 length []      = 0
 length (x::xs) = 1 + length xs
 
+tails : List a -> List (List a)
+tails []          = []
+tails (x::xs) = (x::xs) :: tails xs
+
 --------------------------------------------------------------------------------
 -- Building (bigger) lists
 --------------------------------------------------------------------------------
@@ -436,6 +440,12 @@ isSuffixOfBy p left right = isPrefixOfBy p (reverse left) (reverse right)
 
 isSuffixOf : Eq a => List a -> List a -> Bool
 isSuffixOf = isSuffixOfBy (==)
+
+isInfixOfBy : (a -> a -> Bool) -> List a -> List a -> Bool
+isInfixOfBy p left right = any (isPrefixOfBy p left) (tails right)
+
+isInfixOf : Eq a => List a -> List a -> Bool
+isInfixOf = isInfixOfBy (==)
 
 --------------------------------------------------------------------------------
 -- Sorting
