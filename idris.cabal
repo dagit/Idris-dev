@@ -108,7 +108,11 @@ Executable     idris
                                 haskeline>=0.7, split, directory,
                                 containers, process, transformers, filepath,
                                 directory, binary, bytestring, text, pretty,
-                                language-java>=0.2.2, libffi, unix
+                                language-java>=0.2.2
+               if os(windows)
+                 Build-depends: Win32
+               else
+                 Build-depends: libffi, unix
 
                Extensions:      MultiParamTypeClasses, FunctionalDependencies,
                                 FlexibleInstances, TemplateHaskell
